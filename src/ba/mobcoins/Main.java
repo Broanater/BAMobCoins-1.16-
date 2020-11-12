@@ -139,11 +139,9 @@ public class Main extends org.bukkit.plugin.java.JavaPlugin implements Listener
 		}
 		try
 		{
-			if (!this.getServer().getVersion().contains("MC: 1.8"))
-			{
-				Glow glow = new Glow(new NamespacedKey(this, "GlowingEnchant"));
-				Enchantment.registerEnchantment(glow);
-			}
+			Glow glow = new Glow(new NamespacedKey(this, "GlowingEnchant"));
+			Enchantment.registerEnchantment(glow);
+
 		}
 		catch (IllegalArgumentException e)
 		{
