@@ -256,8 +256,7 @@ public class ShopController implements Listener
 					}
 					catch (Exception e)
 					{
-						System.out
-							.println("[BAMobCoins] Type given for 'Category.Items." + key + ".Type' is unknown. Make sure you use 'COMMAND' or 'ITEM'. Skipping item.");
+						System.out.println("[BAMobCoins] Type given for 'Category.Items." + key + ".Type' is unknown. Make sure you use 'COMMAND' or 'ITEM'. Skipping item.");
 						continue;
 					}
 
@@ -291,8 +290,7 @@ public class ShopController implements Listener
 					}
 					catch (Exception e)
 					{
-						System.out
-							.println("[BAMobCoins] Material given for 'Category.Items." + key + ".Display.Material' is unknown. Skipping item.");
+						System.out.println("[BAMobCoins] Material given for 'Category.Items." + key + ".Display.Material' is unknown. Skipping item.");
 						continue;
 					}
 					int damage = categoryConfig.getInt("Category.Items." + key + ".Display.Damage");
@@ -355,8 +353,7 @@ public class ShopController implements Listener
 
 						if (rewardMaterial == null)
 						{
-							System.out
-								.println("[BAMobCoins] Material given for 'Category.Items." + key + ".Item.Material' is unknown. Skipping item.");
+							System.out.println("[BAMobCoins] Material given for 'Category.Items." + key + ".Item.Material' is unknown. Skipping item.");
 							continue;
 						}
 
@@ -547,15 +544,7 @@ public class ShopController implements Listener
 			/*
 			 * HOSTILE MOBS
 			 */
-			if (Utils.getDropRate("BLAZE") > 0 || Utils.getDropRate("CAVE_SPIDER") > 0 || Utils.getDropRate("CREEPER") > 0 || Utils
-				.getDropRate("DROWNED") > 0 || Utils.getDropRate("ELDER_GUARDIAN") > 0 || Utils.getDropRate("ENDER_DRAGON") > 0 || Utils
-					.getDropRate("ENDERMITE") > 0 || Utils.getDropRate("EVOKER") > 0 || Utils.getDropRate("GHAST") > 0 || Utils
-						.getDropRate("GIANT") > 0 || Utils.getDropRate("GUARDIAN") > 0 || Utils.getDropRate("HUSK") > 0 || Utils
-							.getDropRate("ILLUSIONER") > 0 || Utils.getDropRate("MAGMA_CUBE") > 0 || Utils.getDropRate("PHANTOM") > 0 || Utils
-								.getDropRate("SHULKER") > 0 || Utils.getDropRate("SILVERFISH") > 0 || Utils.getDropRate("SKELETON") > 0 || Utils
-									.getDropRate("SLIME") > 0 || Utils.getDropRate("SPIDER") > 0 || Utils.getDropRate("STRAY") > 0 || Utils
-										.getDropRate("VEX") > 0 || Utils.getDropRate("WITHER") > 0 || Utils.getDropRate("ZOMBIE") > 0 || Utils
-											.getDropRate("ZOMBIE_VILLAGER") > 0)
+			if (Utils.getDropRate("BLAZE") > 0 || Utils.getDropRate("CAVE_SPIDER") > 0 || Utils.getDropRate("CREEPER") > 0 || Utils.getDropRate("DROWNED") > 0 || Utils.getDropRate("ELDER_GUARDIAN") > 0 || Utils.getDropRate("ENDER_DRAGON") > 0 || Utils.getDropRate("ENDERMITE") > 0 || Utils.getDropRate("EVOKER") > 0 || Utils.getDropRate("GHAST") > 0 || Utils.getDropRate("GIANT") > 0 || Utils.getDropRate("GUARDIAN") > 0 || Utils.getDropRate("HUSK") > 0 || Utils.getDropRate("ILLUSIONER") > 0 || Utils.getDropRate("MAGMA_CUBE") > 0 || Utils.getDropRate("PHANTOM") > 0 || Utils.getDropRate("SHULKER") > 0 || Utils.getDropRate("SILVERFISH") > 0 || Utils.getDropRate("SKELETON") > 0 || Utils.getDropRate("SLIME") > 0 || Utils.getDropRate("SPIDER") > 0 || Utils.getDropRate("STRAY") > 0 || Utils.getDropRate("VEX") > 0 || Utils.getDropRate("WITHER") > 0 || Utils.getDropRate("ZOMBIE") > 0 || Utils.getDropRate("ZOMBIE_VILLAGER") > 0 || Utils.getDropRate("HOGLIN") > 0 || Utils.getDropRate("PIGLIN") > 0)
 			{
 				lore.add(getMainColour() + "Hostile Mobs:");
 			}
@@ -748,20 +737,25 @@ public class ShopController implements Listener
 
 				lore.add(Utils.convertColorCodes(newMobFormat));
 			}
+			if (Utils.getDropRate("HOGLIN") > 0)
+			{
+				String newMobFormat = mobFormat.replace("%MOB%", MobNameController.getMobName(EntityType.HOGLIN));
+				newMobFormat = newMobFormat.replace("%RATE%", String.valueOf(Utils.getDropRate("HOGLIN")));
+
+				lore.add(Utils.convertColorCodes(newMobFormat));
+			}
+			if (Utils.getDropRate("PIGLIN") > 0)
+			{
+				String newMobFormat = mobFormat.replace("%MOB%", MobNameController.getMobName(EntityType.PIGLIN));
+				newMobFormat = newMobFormat.replace("%RATE%", String.valueOf(Utils.getDropRate("PIGLIN")));
+
+				lore.add(Utils.convertColorCodes(newMobFormat));
+			}
 
 			/*
 			 * PASSIVE MOBS
 			 */
-			if (Utils.getDropRate("BAT") > 0 || Utils.getDropRate("OCELOT") > 0 || Utils.getDropRate("CHICKEN") > 0 || Utils
-				.getDropRate("COD") > 0 || Utils.getDropRate("COW") > 0 || Utils.getDropRate("DOLPHIN") > 0 || Utils
-					.getDropRate("DONKEY") > 0 || Utils
-						.getDropRate("HORSE") > 0 || Utils.getDropRate("LLAMA") > 0 || Utils.getDropRate("MULE") > 0 || Utils
-							.getDropRate("MUSHROOM_COW") > 0 || Utils.getDropRate("PARROT") > 0 || Utils.getDropRate("PIG") > 0 || Utils
-								.getDropRate("PUFFERFISH") > 0 || Utils.getDropRate("RABBIT") > 0 || Utils.getDropRate("SALMON") > 0 || Utils
-									.getDropRate("SHEEP") > 0 || Utils.getDropRate("SKELETON_HORSE") > 0 || Utils.getDropRate("SNOWMAN") > 0 || Utils
-										.getDropRate("SQUID") > 0 || Utils.getDropRate("TROPICAL_FISH") > 0 || Utils
-											.getDropRate("TURTLE") > 0 || Utils
-												.getDropRate("VILLAGER") > 0 || Utils.getDropRate("ZOMBIE_HORSE") > 0)
+			if (Utils.getDropRate("BAT") > 0 || Utils.getDropRate("OCELOT") > 0 || Utils.getDropRate("CHICKEN") > 0 || Utils.getDropRate("COD") > 0 || Utils.getDropRate("COW") > 0 || Utils.getDropRate("DOLPHIN") > 0 || Utils.getDropRate("DONKEY") > 0 || Utils.getDropRate("HORSE") > 0 || Utils.getDropRate("LLAMA") > 0 || Utils.getDropRate("MULE") > 0 || Utils.getDropRate("MUSHROOM_COW") > 0 || Utils.getDropRate("PARROT") > 0 || Utils.getDropRate("PIG") > 0 || Utils.getDropRate("PUFFERFISH") > 0 || Utils.getDropRate("RABBIT") > 0 || Utils.getDropRate("SALMON") > 0 || Utils.getDropRate("SHEEP") > 0 || Utils.getDropRate("SKELETON_HORSE") > 0 || Utils.getDropRate("SNOWMAN") > 0 || Utils.getDropRate("SQUID") > 0 || Utils.getDropRate("TROPICAL_FISH") > 0 || Utils.getDropRate("TURTLE") > 0 || Utils.getDropRate("VILLAGER") > 0 || Utils.getDropRate("ZOMBIE_HORSE") > 0 || Utils.getDropRate("STRIDER") > 0)
 			{
 				lore.add(getMainColour() + "Passive Mobs:");
 			}
@@ -933,12 +927,18 @@ public class ShopController implements Listener
 
 				lore.add(Utils.convertColorCodes(newMobFormat));
 			}
+			if (Utils.getDropRate("STRIDER") > 0)
+			{
+				String newMobFormat = mobFormat.replace("%MOB%", MobNameController.getMobName(EntityType.STRIDER));
+				newMobFormat = newMobFormat.replace("%RATE%", String.valueOf(Utils.getDropRate("STRIDER")));
+
+				lore.add(Utils.convertColorCodes(newMobFormat));
+			}
 
 			/*
 			 * NEUTRAL MOBS
 			 */
-			if (Utils.getDropRate("ENDERMAN") > 0 || Utils.getDropRate("IRON_GOLEM") > 0 || Utils.getDropRate("PIG_ZOMBIE") > 0 || Utils
-				.getDropRate("POLAR_BEAR") > 0 || Utils.getDropRate("WOLF") > 0)
+			if (Utils.getDropRate("ENDERMAN") > 0 || Utils.getDropRate("IRON_GOLEM") > 0 || Utils.getDropRate("ZOMBIFIED_PIGLIN") > 0 || Utils.getDropRate("POLAR_BEAR") > 0 || Utils.getDropRate("WOLF") > 0)
 			{
 				lore.add(getMainColour() + "Neutral Mobs:");
 			}
@@ -958,8 +958,8 @@ public class ShopController implements Listener
 			}
 			if (Utils.getDropRate("PIG_ZOMBIE") > 0)
 			{
-				String newMobFormat = mobFormat.replace("%MOB%", MobNameController.getMobName(EntityType.PIG_ZOMBIE));
-				newMobFormat = newMobFormat.replace("%RATE%", String.valueOf(Utils.getDropRate("PIG_ZOMBIE")));
+				String newMobFormat = mobFormat.replace("%MOB%", MobNameController.getMobName(EntityType.ZOMBIFIED_PIGLIN));
+				newMobFormat = newMobFormat.replace("%RATE%", String.valueOf(Utils.getDropRate("ZOMBIFIED_PIGLIN")));
 
 				lore.add(Utils.convertColorCodes(newMobFormat));
 			}
@@ -974,6 +974,13 @@ public class ShopController implements Listener
 			{
 				String newMobFormat = mobFormat.replace("%MOB%", MobNameController.getMobName(EntityType.WOLF));
 				newMobFormat = newMobFormat.replace("%RATE%", String.valueOf(Utils.getDropRate("WOLF")));
+
+				lore.add(Utils.convertColorCodes(newMobFormat));
+			}
+			if (Utils.getDropRate("ZOGLIN") > 0)
+			{
+				String newMobFormat = mobFormat.replace("%MOB%", MobNameController.getMobName(EntityType.ZOGLIN));
+				newMobFormat = newMobFormat.replace("%RATE%", String.valueOf(Utils.getDropRate("ZOGLIN")));
 
 				lore.add(Utils.convertColorCodes(newMobFormat));
 			}

@@ -51,6 +51,8 @@ DropChances:
   WITHER: -1 
   ZOMBIE: -1 
   ZOMBIE_VILLAGER : -1
+  HOGLIN: -1
+  PIGLIN: -1
   # Passive
   BAT: -1 
   OCELOT: -1 
@@ -76,10 +78,11 @@ DropChances:
   TURTLE: -1
   VILLAGER: -1
   ZOMBIE_HORSE: -1
+  STRIDER: -1
   # Neutral
   ENDERMAN: -1 
   IRON_GOLEM: -1
-  PIG_ZOMBIE: -1
+  ZOMBIFIED_PIGLIN: -1
   POLAR_BEAR: -1
   WOLF: -1
   # Can even do players
