@@ -32,8 +32,9 @@ public class Commands implements CommandExecutor
 		if (cmd.getName().equalsIgnoreCase("BAMobCoins"))
 		{
 			/*
-			 * ---------------------------------------------- ---------------------------------------------- PLAYER COMMANDS
-			 * ---------------------------------------------- ----------------------------------------------
+			 * ----------------------------------------------
+			 * PLAYER COMMANDS
+			 * ----------------------------------------------
 			 */
 			if ((sender instanceof Player))
 			{
@@ -64,7 +65,7 @@ public class Commands implements CommandExecutor
 							int balance = CoinsAPI.getCoins(p.getUniqueId().toString());
 
 							String message = MessagesController.getYourBalance()
-								.replace("%BALANCE%", String.valueOf(balance));
+								.replace("{balance}", String.valueOf(balance));
 
 							p.sendMessage(Utils.convertColorCodes(message));
 
@@ -86,8 +87,8 @@ public class Commands implements CommandExecutor
 							int balance = CoinsAPI.getCoins(toCheck.getUniqueId().toString());
 
 							String message = MessagesController.getOtherBalance()
-								.replace("%BALANCE%", String.valueOf(balance))
-								.replace("%PLAYER%", sender.getName());
+								.replace("{balance}", String.valueOf(balance))
+								.replace("{player}", sender.getName());
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 							return true;
@@ -99,7 +100,7 @@ public class Commands implements CommandExecutor
 					else if (args.length > 2)
 					{
 						String message = MessagesController.getGlobalTooManyArgs()
-							.replace("%COMMAND%", "/BAMobCoins balance or /BAMobCoins balance <players ign>.");
+							.replace("{command}", "/BAMobCoins balance or /BAMobCoins balance <players ign>.");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
@@ -116,7 +117,7 @@ public class Commands implements CommandExecutor
 
 							for (String message : helpMessages)
 							{
-								message = message.replace("%VERSION%", plugin.getDescription().getVersion());
+								message = message.replace("{version}", plugin.getDescription().getVersion());
 
 								sender.sendMessage(Utils.convertColorCodes(message));
 							}
@@ -130,7 +131,7 @@ public class Commands implements CommandExecutor
 					else if (args.length > 1)
 					{
 						String message = MessagesController.getGlobalTooManyArgs()
-							.replace("%COMMAND%", "/BAMobCoins help.");
+							.replace("{command}", "/BAMobCoins help.");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
@@ -168,7 +169,7 @@ public class Commands implements CommandExecutor
 							if (amount <= emptySpaces * 64)
 							{
 								String message = MessagesController.getCoinWithdraw()
-									.replace("%AMOUNT%", String.valueOf(amount));
+									.replace("{amount}", String.valueOf(amount));
 
 								Utils.withdrawCoins(player, amount);
 								sender.sendMessage(Utils.convertColorCodes(message));
@@ -176,7 +177,7 @@ public class Commands implements CommandExecutor
 							else
 							{
 								String message = MessagesController.getCoinNoSpace()
-									.replace("%AMOUNT%", String.valueOf(amount));
+									.replace("{amount}", String.valueOf(amount));
 
 								sender.sendMessage(Utils.convertColorCodes(message));
 							}
@@ -185,7 +186,7 @@ public class Commands implements CommandExecutor
 						else
 						{
 							String message = MessagesController.getCoinNotEnough()
-								.replace("%AMOUNT%", String.valueOf(amount));
+								.replace("{amount}", String.valueOf(amount));
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 						}
@@ -258,9 +259,9 @@ public class Commands implements CommandExecutor
 							if (toSend == 0)
 							{
 								String message = MessagesController.getPaySendZero()
-									.replace("%AMOUNT%", "0")
-									.replace("%SENDER%", senderIgn)
-									.replace("%RECEIVER%", receiverIgn);
+									.replace("{amount}", "0")
+									.replace("{sender}", senderIgn)
+									.replace("{receiver}", receiverIgn);
 
 								sender.sendMessage(Utils.convertColorCodes(message));
 								return true;
@@ -276,14 +277,14 @@ public class Commands implements CommandExecutor
 								CoinsAPI.removeCoins(sendingUuid, toSend);
 
 								String messageSender = MessagesController.getPaySender()
-									.replace("%AMOUNT%", String.valueOf(toSend))
-									.replace("%SENDER%", senderIgn)
-									.replace("%RECEIVER%", receiverIgn);
+									.replace("{amount}", String.valueOf(toSend))
+									.replace("{sender}", senderIgn)
+									.replace("{receiver}", receiverIgn);
 
 								String messageReceiver = MessagesController.getPayReceiver()
-									.replace("%AMOUNT%", String.valueOf(toSend))
-									.replace("%SENDER%", senderIgn)
-									.replace("%RECEIVER%", receiverIgn);
+									.replace("{amount}", String.valueOf(toSend))
+									.replace("{sender}", senderIgn)
+									.replace("{receiver}", receiverIgn);
 
 								sender.sendMessage(Utils.convertColorCodes(messageSender));
 								receiver.sendMessage(Utils.convertColorCodes(messageReceiver));
@@ -291,9 +292,9 @@ public class Commands implements CommandExecutor
 							else
 							{
 								String message = MessagesController.getPayNotEnough()
-									.replace("%AMOUNT%", String.valueOf(toSend))
-									.replace("%SENDER%", senderIgn)
-									.replace("%RECEIVER%", receiverIgn);
+									.replace("{amount}", String.valueOf(toSend))
+									.replace("{sender}", senderIgn)
+									.replace("{receiver}", receiverIgn);
 
 								sender.sendMessage(Utils.convertColorCodes(message));
 							}
@@ -302,14 +303,14 @@ public class Commands implements CommandExecutor
 						else if (args.length > 3)
 						{
 							String message = MessagesController.getGlobalTooManyArgs()
-								.replace("%COMMAND%", "/BAMobCoins pay <players ign> <amount>");
+								.replace("{command}", "/BAMobCoins pay <players ign> <amount>");
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 						}
 						else if (args.length < 3)
 						{
 							String message = MessagesController.getGlobalNotEnoughArgs()
-								.replace("%COMMAND%", "/BAMobCoins pay <players ign> <amount>");
+								.replace("{command}", "/BAMobCoins pay <players ign> <amount>");
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 						}
@@ -348,7 +349,7 @@ public class Commands implements CommandExecutor
 					{
 						String message = MessagesController.getGlobalTooManyArgs();
 
-						message = message.replace("%COMMAND%", "/BAMobCoins reload.");
+						message = message.replace("{command}", "/BAMobCoins reload.");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
@@ -420,7 +421,7 @@ public class Commands implements CommandExecutor
 							else
 							{
 								String message = MessagesController.getMessagesUnknownSection()
-									.replace("%SECTION%", section);
+									.replace("{section}", section);
 
 								sender.sendMessage(Utils.convertColorCodes(message));
 							}
@@ -430,14 +431,14 @@ public class Commands implements CommandExecutor
 						else if (args.length == 1)
 						{
 							String message = MessagesController.getGlobalNotEnoughArgs()
-								.replace("%COMMAND%", "/BAMobCoins messages <section>.");
+								.replace("{command}", "/BAMobCoins messages <section>.");
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 						}
 						else if (args.length > 2)
 						{
 							String message = MessagesController.getGlobalTooManyArgs()
-								.replace("%COMMAND%", "/BAMobCoins messages <section>.");
+								.replace("{command}", "/BAMobCoins messages <section>.");
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 						}
@@ -496,12 +497,12 @@ public class Commands implements CommandExecutor
 							CoinsAPI.addCoins(receiverUuid, amount);
 							/* Get the messages */
 							String adminMessage = MessagesController.getAddAdmin()
-								.replace("%AMOUNT%", String.valueOf(amount))
-								.replace("%PLAYER%", receiverIgn);
+								.replace("{amount}", String.valueOf(amount))
+								.replace("{player}", receiverIgn);
 
 							String playerMessage = MessagesController.getAddPlayer()
-								.replace("%AMOUNT%", String.valueOf(amount))
-								.replace("%PLAYER%", receiverIgn);
+								.replace("{amount}", String.valueOf(amount))
+								.replace("{player}", receiverIgn);
 
 							/* Send the messages */
 							sender.sendMessage(Utils.convertColorCodes(adminMessage));
@@ -512,7 +513,7 @@ public class Commands implements CommandExecutor
 						else if (args.length > 3)
 						{
 							String message = MessagesController.getGlobalTooManyArgs()
-								.replace("%COMMAND%", "/BAMobCoins add <players ign> <amount>");
+								.replace("{command}", "/BAMobCoins add <players ign> <amount>");
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 							return true;
@@ -520,7 +521,7 @@ public class Commands implements CommandExecutor
 						else if (args.length < 3)
 						{
 							String message = MessagesController.getGlobalNotEnoughArgs()
-								.replace("%COMMAND%", "/BAMobCoins add <players ign> <amount>");
+								.replace("{command}", "/BAMobCoins add <players ign> <amount>");
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 							return true;
@@ -581,12 +582,12 @@ public class Commands implements CommandExecutor
 
 							/* Get the messages */
 							String adminMessage = MessagesController.getRemoveAdmin()
-								.replace("%PLAYER%", receiverIgn)
-								.replace("%AMOUNT%", String.valueOf(amount));
+								.replace("{player}", receiverIgn)
+								.replace("{amount}", String.valueOf(amount));
 
 							String playerMessage = MessagesController.getRemovePlayer()
-								.replace("%PLAYER%", receiverIgn)
-								.replace("%AMOUNT%", String.valueOf(amount));
+								.replace("{player}", receiverIgn)
+								.replace("{amount}", String.valueOf(amount));
 
 							/* Send the messages */
 							sender.sendMessage(Utils.convertColorCodes(adminMessage));
@@ -600,14 +601,14 @@ public class Commands implements CommandExecutor
 					else if (args.length > 3)
 					{
 						String message = MessagesController.getGlobalTooManyArgs()
-							.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+							.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
 					else if (args.length < 3)
 					{
 						String message = MessagesController.getGlobalNotEnoughArgs()
-							.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+							.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
@@ -647,12 +648,12 @@ public class Commands implements CommandExecutor
 							CoinsAPI.setCoins(pl, amount);
 
 							String adminMessage = MessagesController.getSetAdmin()
-								.replace("%PLAYER%", receiverIgn)
-								.replace("%AMOUNT%", String.valueOf(amount));
+								.replace("{player}", receiverIgn)
+								.replace("{amount}", String.valueOf(amount));
 
 							String playerMessage = MessagesController.getSetPlayer()
-								.replace("%PLAYER%", receiverIgn)
-								.replace("%AMOUNT%", String.valueOf(amount));
+								.replace("{player}", receiverIgn)
+								.replace("{amount}", String.valueOf(amount));
 
 							sender.sendMessage(Utils.convertColorCodes(adminMessage));
 							receiver.sendMessage(Utils.convertColorCodes(playerMessage));
@@ -661,14 +662,14 @@ public class Commands implements CommandExecutor
 						else if (args.length > 3)
 						{
 							String message = MessagesController.getGlobalTooManyArgs()
-								.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+								.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 						}
 						else if (args.length < 3)
 						{
 							String message = MessagesController.getGlobalNotEnoughArgs()
-								.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+								.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 						}
@@ -718,15 +719,15 @@ public class Commands implements CommandExecutor
 										if (Utils.givePlayerItem(receiver, customItem.getRewardItem()))
 										{
 											String message = MessagesController.getShopBoughtItem()
-												.replace("%ITEM%", customItem.getDisplayItem().getItemMeta().getDisplayName())
-												.replace("%PRICE%", String.valueOf(customItem.getPrice()));
+												.replace("{item}", customItem.getDisplayItem().getItemMeta().getDisplayName())
+												.replace("{price}", String.valueOf(customItem.getPrice()));
 
 											receiver.sendMessage(Utils.convertColorCodes(message));
 										}
 										else
 										{
 											String noSpaceMessage = MessagesController.getGiveItemNoSpace()
-												.replace("%ITEM%", customItem.getDisplayItem().getItemMeta().getDisplayName());
+												.replace("{item}", customItem.getDisplayItem().getItemMeta().getDisplayName());
 
 											receiver.sendMessage(Utils.convertColorCodes(noSpaceMessage));
 										}
@@ -739,8 +740,8 @@ public class Commands implements CommandExecutor
 
 							/* Item they tried to give doesn't exist */
 							String message = MessagesController.getGiveItemUnfoundItem()
-								.replace("%PLAYER%", receiverIgn)
-								.replace("%ITEM%", itemKey);
+								.replace("{player}", receiverIgn)
+								.replace("{item}", itemKey);
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 						}
@@ -748,7 +749,7 @@ public class Commands implements CommandExecutor
 						{
 							/* Too many arguments */
 							String message = MessagesController.getGlobalTooManyArgs()
-								.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+								.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 						}
@@ -756,7 +757,7 @@ public class Commands implements CommandExecutor
 						{
 							/* Not enough arguments */
 							String message = MessagesController.getGlobalNotEnoughArgs()
-								.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+								.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 						}
@@ -794,7 +795,7 @@ public class Commands implements CommandExecutor
 					{
 						String message = MessagesController.getGlobalTooManyArgs();
 
-						message = message.replace("%COMMAND%", "/BAMobCoins reload.");
+						message = message.replace("{command}", "/BAMobCoins reload.");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
@@ -864,7 +865,7 @@ public class Commands implements CommandExecutor
 						else
 						{
 							String message = MessagesController.getMessagesUnknownSection()
-								.replace("%SECTION%", section);
+								.replace("{section}", section);
 
 							sender.sendMessage(Utils.convertColorCodes(message));
 						}
@@ -874,14 +875,14 @@ public class Commands implements CommandExecutor
 					else if (args.length == 1)
 					{
 						String message = MessagesController.getGlobalNotEnoughArgs()
-							.replace("%COMMAND%", "/BAMobCoins messages <section>.");
+							.replace("{command}", "/BAMobCoins messages <section>.");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
 					else if (args.length > 2)
 					{
 						String message = MessagesController.getGlobalTooManyArgs()
-							.replace("%COMMAND%", "/BAMobCoins messages <section>.");
+							.replace("{command}", "/BAMobCoins messages <section>.");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
@@ -936,12 +937,12 @@ public class Commands implements CommandExecutor
 						{
 							/* Get the messages */
 							String adminMessage = MessagesController.getAddAdmin()
-								.replace("%AMOUNT%", String.valueOf(amount))
-								.replace("%PLAYER%", receiverIgn);
+								.replace("{amount}", String.valueOf(amount))
+								.replace("{player}", receiverIgn);
 
 							String playerMessage = MessagesController.getAddPlayer()
-								.replace("%AMOUNT%", String.valueOf(amount))
-								.replace("%PLAYER%", receiverIgn);
+								.replace("{amount}", String.valueOf(amount))
+								.replace("{player}", receiverIgn);
 
 							/* Send the messages */
 							sender.sendMessage(Utils.convertColorCodes(adminMessage));
@@ -952,7 +953,7 @@ public class Commands implements CommandExecutor
 					else if (args.length > 3)
 					{
 						String message = MessagesController.getGlobalTooManyArgs()
-							.replace("%COMMAND%", "/BAMobCoins add <players ign> <amount>");
+							.replace("{command}", "/BAMobCoins add <players ign> <amount>");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 						return true;
@@ -960,7 +961,7 @@ public class Commands implements CommandExecutor
 					else if (args.length < 3)
 					{
 						String message = MessagesController.getGlobalNotEnoughArgs()
-							.replace("%COMMAND%", "/BAMobCoins add <players ign> <amount>");
+							.replace("{command}", "/BAMobCoins add <players ign> <amount>");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 						return true;
@@ -1014,12 +1015,12 @@ public class Commands implements CommandExecutor
 
 						/* Get the messages */
 						String adminMessage = MessagesController.getRemoveAdmin()
-							.replace("%PLAYER%", receiverIgn)
-							.replace("%AMOUNT%", String.valueOf(amount));
+							.replace("{player}", receiverIgn)
+							.replace("{amount}", String.valueOf(amount));
 
 						String playerMessage = MessagesController.getRemovePlayer()
-							.replace("%PLAYER%", receiverIgn)
-							.replace("%AMOUNT%", String.valueOf(amount));
+							.replace("{player}", receiverIgn)
+							.replace("{amount}", String.valueOf(amount));
 
 						/* Send the messages */
 						sender.sendMessage(Utils.convertColorCodes(adminMessage));
@@ -1029,14 +1030,14 @@ public class Commands implements CommandExecutor
 					else if (args.length > 3)
 					{
 						String message = MessagesController.getGlobalTooManyArgs()
-							.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+							.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
 					else if (args.length < 3)
 					{
 						String message = MessagesController.getGlobalNotEnoughArgs()
-							.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+							.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
@@ -1074,12 +1075,12 @@ public class Commands implements CommandExecutor
 						CoinsAPI.setCoins(pl, amount);
 
 						String adminMessage = MessagesController.getSetAdmin()
-							.replace("%PLAYER%", receiverIgn)
-							.replace("%AMOUNT%", String.valueOf(amount));
+							.replace("{player}", receiverIgn)
+							.replace("{amount}", String.valueOf(amount));
 
 						String playerMessage = MessagesController.getSetPlayer()
-							.replace("%PLAYER%", receiverIgn)
-							.replace("%AMOUNT%", String.valueOf(amount));
+							.replace("{player}", receiverIgn)
+							.replace("{amount}", String.valueOf(amount));
 
 						sender.sendMessage(Utils.convertColorCodes(adminMessage));
 						receiver.sendMessage(Utils.convertColorCodes(playerMessage));
@@ -1088,14 +1089,14 @@ public class Commands implements CommandExecutor
 					else if (args.length > 3)
 					{
 						String message = MessagesController.getGlobalTooManyArgs()
-							.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+							.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
 					else if (args.length < 3)
 					{
 						String message = MessagesController.getGlobalNotEnoughArgs()
-							.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+							.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
@@ -1138,15 +1139,15 @@ public class Commands implements CommandExecutor
 									if (Utils.givePlayerItem(receiver, customItem.getRewardItem()))
 									{
 										String message = MessagesController.getShopBoughtItem()
-											.replace("%ITEM%", customItem.getDisplayItem().getItemMeta().getDisplayName())
-											.replace("%PRICE%", String.valueOf(customItem.getPrice()));
+											.replace("{item}", customItem.getDisplayItem().getItemMeta().getDisplayName())
+											.replace("{price}", String.valueOf(customItem.getPrice()));
 
 										receiver.sendMessage(Utils.convertColorCodes(message));
 									}
 									else
 									{
 										String noSpaceMessage = MessagesController.getGiveItemNoSpace()
-											.replace("%ITEM%", customItem.getDisplayItem().getItemMeta().getDisplayName());
+											.replace("{item}", customItem.getDisplayItem().getItemMeta().getDisplayName());
 
 										receiver.sendMessage(Utils.convertColorCodes(noSpaceMessage));
 									}
@@ -1159,8 +1160,8 @@ public class Commands implements CommandExecutor
 
 						/* Item they tried to give doesn't exist */
 						String message = MessagesController.getGiveItemUnfoundItem()
-							.replace("%PLAYER%", receiverIgn)
-							.replace("%ITEM%", itemKey);
+							.replace("{player}", receiverIgn)
+							.replace("{item}", itemKey);
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
@@ -1168,7 +1169,7 @@ public class Commands implements CommandExecutor
 					{
 						/* Too many arguments */
 						String message = MessagesController.getGlobalTooManyArgs()
-							.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+							.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
@@ -1176,7 +1177,7 @@ public class Commands implements CommandExecutor
 					{
 						/* Not enough arguments */
 						String message = MessagesController.getGlobalNotEnoughArgs()
-							.replace("%COMMAND%", "/BAMobCoins remove <players ign> <amount>");
+							.replace("{command}", "/BAMobCoins remove <players ign> <amount>");
 
 						sender.sendMessage(Utils.convertColorCodes(message));
 					}
