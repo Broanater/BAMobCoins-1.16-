@@ -113,9 +113,8 @@ public class Utils implements Listener
 		}
 
 		String name = plugin.getConfig().getString("Coin.Name");
-		int damage = plugin.getConfig().getInt("Coin.Damage");
 
-		ItemStack item = new ItemStack(Material.getMaterial(plugin.getConfig().getString("Coin.Item").toUpperCase()), amount, (short) damage);
+		ItemStack item = new ItemStack(Material.getMaterial(plugin.getConfig().getString("Coin.Item").toUpperCase()), amount);
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(Utils.convertColorCodes(name));
 
@@ -192,13 +191,13 @@ public class Utils implements Listener
 				{
 					amount -= 64;
 					
-					ItemStack item = new ItemStack(rewardItem.getType(), 64, rewardItem.getDurability());
+					ItemStack item = new ItemStack(rewardItem.getType(), 64);
 					item.setItemMeta(rewardItem.getItemMeta());
 					player.getInventory().addItem(item);
 				}
 				else
 				{
-					ItemStack item = new ItemStack(rewardItem.getType(), amount, rewardItem.getDurability());
+					ItemStack item = new ItemStack(rewardItem.getType(), amount);
 					item.setItemMeta(rewardItem.getItemMeta());
 					player.getInventory().addItem(item);
 					
