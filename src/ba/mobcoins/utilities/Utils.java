@@ -69,14 +69,14 @@ public class Utils implements Listener
 		if (sCoinsRecieved > 1)
 		{
 			message = MessagesController.getGainSingle()
-			.replace("%MOB%", sMob)
-			.replace("%AMOUNT%", String.valueOf(sCoinsRecieved));
+			.replace("{mob}", sMob)
+			.replace("{amount}", String.valueOf(sCoinsRecieved));
 		}
 		else
 		{
 			message = MessagesController.getGainPlural()
-				.replace("%MOB%", sMob)
-				.replace("%AMOUNT%", String.valueOf(sCoinsRecieved));
+				.replace("{mob}", sMob)
+				.replace("{amount}", String.valueOf(sCoinsRecieved));
 		}
 		return convertColorCodes(message);
 	}
@@ -84,7 +84,7 @@ public class Utils implements Listener
 	public static void insufficientPermissions(CommandSender sSender, String sCommand)
 	{
 		String message = MessagesController.getGlobalInsufficientPermission()
-				.replace("%COMMAND%", sCommand);
+				.replace("{command}", sCommand);
 		
 		sSender.sendMessage(convertColorCodes(message));
 	}
@@ -142,7 +142,7 @@ public class Utils implements Listener
 	{
 		for (String request : sCommands)
 		{
-			request = request.replace("%PLAYER%", player.getName());
+			request = request.replace("{player}", player.getName());
 			
 			char typeIdentifier = request.charAt(0);
 			String requestWithoutTypeId = request.substring(1, request.length());
@@ -159,7 +159,7 @@ public class Utils implements Listener
 			/* Send message to player purchasing */
 			else if (typeIdentifier == ':')
 			{
-				requestWithoutTypeId = requestWithoutTypeId.replace("%PREFIX%", ConfigController.getPrefix());
+				requestWithoutTypeId = requestWithoutTypeId.replace("{prefix}", ConfigController.getPrefix());
 				sendMessage(player, requestWithoutTypeId);
 			}
 			/* Broadcast message to server */
