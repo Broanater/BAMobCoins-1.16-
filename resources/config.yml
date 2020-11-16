@@ -15,10 +15,6 @@ Coin:
   Lore:
   - '&7Right click to deposit!'
 DropChances:
-  # -------------- IMPORTANT --------------
-  # ALL ENTITIES FROM ALL VERSIONS ARE LISTED. WARNING MESSAGES WILL APPEAR IN CONSOLE UNLESS THE ENTITIES THAT ARE NOT
-  # FROM YOUR VERSION ARE REMOVED FROM THIS FILE.
-  # -------------- IMPORTANT --------------
   # Leave value as -1 for them to not be active
   # The value entered is the percent for the drop.
   # Entity Types can be found here, https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
@@ -54,6 +50,8 @@ DropChances:
   WITHER: -1 
   ZOMBIE: -1 
   ZOMBIE_VILLAGER : -1
+  HOGLIN: -1
+  PIGLIN: -1
   # Passive
   BAT: -1 
   OCELOT: -1 
@@ -79,10 +77,11 @@ DropChances:
   TURTLE: -1
   VILLAGER: -1
   ZOMBIE_HORSE: -1
+  STRIDER: -1
   # Neutral
   ENDERMAN: -1 
   IRON_GOLEM: -1
-  PIG_ZOMBIE: -1
+  ZOMBIFIED_PIGLIN: -1
   POLAR_BEAR: -1
   WOLF: -1
   # Can even do players
